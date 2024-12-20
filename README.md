@@ -150,59 +150,72 @@ Explique o caminho que as instruções seguem desde um aplicativo escrito em Pyt
 
 ## Questão 1: Gerenciamento de recursos por um SO
 
-O sistema operacional gerencia os recursos de hardware e software para garantir eficiência e segurança por meio de mecanismos específicos:
+O sistema operacional (SO) é responsável por gerenciar os recursos de hardware e software, garantindo **eficiência** e **segurança**. Vamos analisar suas principais funções:
 
-### Gerenciamento de Processos
-- Utiliza estruturas como tabelas de processos para controlar o estado e a execução de cada processo.
-- Exemplos incluem a alocação de tempo de CPU e o uso de escalonadores para decidir qual processo será executado.
+### **Gerenciamento de Processos**
+- **Função**: Controla a criação, execução e finalização de processos. Coordena a CPU para que múltiplos processos sejam executados sem conflitos.
+- **Exemplo Prático**: No Windows, o Gerenciador de Tarefas permite ao usuário monitorar e encerrar processos em execução, alocando recursos adequadamente.
 
-### Gerenciamento de Memória
-- Adota técnicas como paginação e segmentação para abstrair e otimizar o uso da memória física.
-- Exemplos: proteção de áreas de memória para evitar acessos não autorizados.
+### **Gerenciamento de Memória**
+- **Função**: Garante que cada processo tenha acesso à memória necessária sem interferir em outros processos. Realiza a alocação dinâmica e o uso de memória virtual.
+- **Exemplo Prático**: Em sistemas Linux, a memória swap é usada quando a RAM está cheia, permitindo a execução de programas mesmo em condições de pouca memória.
 
-### Gerenciamento de Dispositivos de Entrada e Saída
-- Utiliza drivers para traduzir comandos de alto nível em sinais específicos para cada dispositivo.
-- A comunicação pode ser baseada em interrupções, como ao escrever em discos ou acessar impressoras.
+### **Gerenciamento de Dispositivos de Entrada e Saída**
+- **Função**: Coordena a comunicação entre hardware (teclados, impressoras, etc.) e software, garantindo que dispositivos diferentes possam ser usados simultaneamente.
+- **Exemplo Prático**: O Windows fornece drivers para que dispositivos como impressoras sejam reconhecidos e utilizados sem intervenção manual.
 
-### Gerenciamento de Arquivos
-- Oferece sistemas de arquivos para armazenar dados de forma estruturada e segura.
-- Exemplos: sistemas de arquivos podem implementar mecanismos como journaling para evitar corrupção de dados.
+### **Gerenciamento de Arquivos**
+- **Função**: Organiza, armazena e protege dados no sistema de arquivos, além de fornecer acesso controlado a eles.
+- **Exemplo Prático**: O macOS utiliza o sistema de arquivos APFS para operações rápidas e confiáveis, com suporte a criptografia nativa.
 
 ---
 
 ## Questão 2: Arquitetura de SOs
 
-As arquiteturas de sistemas operacionais afetam custos e segurança:
+### **Impactos das Arquiteturas de Sistemas Operacionais**
 
-### Monolítica
-- **Exemplo**: Linux (antigas versões).
-- **Vantagens**: Favorece desempenho.
-- **Desvantagens**: Manutenção cara e alta vulnerabilidade.
+#### **Arquitetura Monolítica**
+- **Complexidade**: Fácil de implementar inicialmente, pois todos os componentes estão integrados.
+- **Manutenção**: Difícil e cara, devido à necessidade de testes extensivos ao alterar qualquer componente.
+- **Necessidade de Especialização**: Menor, já que os desenvolvedores precisam compreender um único bloco de código.
+- **Segurança**: Vulnerável, pois uma falha em um componente pode comprometer todo o sistema.
+- **Exemplo**: O Linux utiliza uma arquitetura monolítica.
 
-### Microkernel
-- **Exemplo**: Minix.
-- **Vantagens**: Maior segurança por isolamento.
-- **Desvantagens**: Custo inicial alto devido à separação de serviços.
+#### **Arquitetura Microkernel**
+- **Complexidade**: Alta durante a implementação inicial, já que os serviços precisam ser projetados de forma isolada.
+- **Manutenção**: Mais fácil, pois os módulos são independentes e podem ser atualizados sem afetar o núcleo.
+- **Necessidade de Especialização**: Maior, pois cada módulo exige um nível específico de conhecimento.
+- **Segurança**: Elevada, devido ao isolamento de serviços.
+- **Exemplo**: O Minix utiliza a arquitetura microkernel.
 
-### Em Camadas
-- **Exemplo**: Sistemas IBM Mainframe.
-- **Vantagens**: Modularidade facilita manutenção e segurança intermediária.
-- **Desvantagens**: Aumenta a complexidade de implementação.
+#### **Arquitetura em Camadas**
+- **Complexidade**: Moderada, exige boa definição de interfaces entre camadas.
+- **Manutenção**: Simplificada, já que as falhas podem ser corrigidas em camadas específicas.
+- **Necessidade de Especialização**: Equilibrada, pois cada camada pode ser tratada de forma independente.
+- **Segurança**: Balanceada, desde que a comunicação entre camadas seja segura.
+- **Exemplo**: O Windows NT usa uma abordagem em camadas.
 
 ---
 
-## Questão 3: Segurança em SO
+## Questão 3: Introdução à Segurança de Sistemas Operacionais
 
-**Controles de Acesso** e **Criptografia** são mecanismos críticos:
+### **Impacto de Controles de Acesso e Criptografia**
 
-### Benefícios
-- Garantem integridade e confidencialidade, impedindo acessos não autorizados e protegendo informações.
+#### **Controles de Acesso**
+- **Benefícios**: Garante que apenas usuários autorizados acessem recursos, protegendo o sistema contra acessos não autorizados.
+- **Desafios**: Implementações complexas podem dificultar a usabilidade, como exigir autenticação multifator frequente.
+- **Impacto na Experiência do Usuário**: Pode ser percebido como inconveniente, mas é essencial para evitar violações de segurança.
+- **Exemplo**: O Windows utiliza políticas de grupo (Group Policies) para definir permissões em redes corporativas.
 
-### Desafios
-- Impactam a performance, como no caso de criptografia de disco, que consome recursos computacionais e pode atrasar operações.
+#### **Criptografia**
+- **Benefícios**: Protege dados em trânsito (TLS) e em repouso (BitLocker, no Windows), garantindo confidencialidade.
+- **Desafios**: Requer processamento adicional, podendo impactar a performance do sistema.
+- **Impacto na Experiência do Usuário**: O impacto é minimizado por hardware moderno, mas pode ser perceptível em sistemas mais antigos.
+- **Exemplo**: O macOS usa o FileVault para criptografar o disco do usuário, protegendo dados contra acessos indevidos.
 
-### Exemplo
-- O uso de criptografia no BitLocker do Windows é crucial para proteger informações sensíveis em dispositivos corporativos.
+### **Aplicações Críticas**
+- **Controles de Acesso**: Em servidores de banco de dados, como MySQL, onde múltiplos usuários acessam informações sensíveis.
+- **Criptografia**: Em serviços de armazenamento na nuvem, como o Google Drive, para garantir a privacidade dos arquivos dos usuários.
 
 ---
 
